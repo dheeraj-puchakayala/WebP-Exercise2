@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -9,13 +13,13 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("header").load("../templates/header.html") });
+          $(function(){ $("header").load("../templates/header.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
        
 
@@ -82,7 +86,7 @@
                         <!-- Video 1 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 1</h6>
                               <hr>
@@ -104,7 +108,7 @@
                         <!-- Video 2 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 2</h6>
                               <hr>
@@ -126,7 +130,7 @@
                         <!-- Video 3 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 3</h6>
                               <hr>
@@ -166,7 +170,7 @@
                         <!-- Video 1 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 1</h6>
                               <hr>
@@ -188,7 +192,7 @@
                         <!-- Video 2 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 2</h6>
                               <hr>
@@ -210,7 +214,7 @@
                         <!-- Video 3 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 3</h6>
                               <hr>
@@ -251,7 +255,7 @@
                         <!-- Video 1 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 1</h6>
                               <hr>
@@ -273,7 +277,7 @@
                         <!-- Video 2 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 2</h6>
                               <hr>
@@ -295,7 +299,7 @@
                         <!-- Video 3 -->
                         <div class="col">
                           <div class="card shadow-sm">
-                            <a href="../videos/PYTHON_video.html"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
+                            <a href="../videos/PYTHON_video.php"><img src="../images/PYTHON-Tutorials.png" width="100%" height ="50%" class="rounded"></a>
                             <div class="card-body">
                               <h6>Python: Lecture 3</h6>
                               <hr>

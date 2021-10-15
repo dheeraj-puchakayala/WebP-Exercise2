@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -10,13 +14,13 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("header").load("../templates/header.html") });
+          $(function(){ $("header").load("../templates/header.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
     
     </head>

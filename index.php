@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
     <head>
         <title>
@@ -17,18 +20,13 @@
         <script> 
           $(function(){ $("footer").load("templates/footer.php") });
         </script>
-        <script>
-            let name = "session"
-            document.cookie = name +'=0; Path=/;'
-            console.log(document.location.hostname)
-        </script>
 
 
     </head>
     <body>
 
       <header></header>
-
+      
       <div class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
@@ -48,7 +46,7 @@
 
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div class="col">
-        <a href="../courses/HTML.html" style="text-decoration: none;">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/HTML.php" style="text-decoration: none;">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-2.png'); background-size: cover;">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">HTML</h2>
@@ -62,7 +60,7 @@
       </div>
 
       <div class="col">
-        <a href="../courses/CSS.html" style="text-decoration: none;" onclick="return checkLoggedIn()">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/CSS.php" style="text-decoration: none;" onclick="return checkLoggedIn()">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-1.png'); background-size: cover;">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">CSS</h2>
@@ -76,7 +74,7 @@
       </div>
 
       <div class="col">
-        <a href="../courses/JAVASCRIPT.html" style="text-decoration: none;" onclick="return checkLoggedIn()">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVASCRIPT.php" style="text-decoration: none;" onclick="return checkLoggedIn()">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-3.png'); background-size: cover; ">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">JAVASCRIPT</h2>
@@ -95,11 +93,11 @@
       <footer></footer>
 
       <script>
-        let cook1 = decodeURIComponent(document.cookie)
+        let cook1 = <?php echo (isset($_SESSION['id']))?$_SESSION['id']:"0"; ?>;
         let k = document.getElementById("logger")
         let l = document.getElementById("logger1")
         let m = document.getElementById("logger2")
-        if(cook1[cook1.length - 1] == "0"){
+        if(cook1 == "0"){
           k.style.display = "block"
           l.style.display = "block"
           m.style.display = "none"

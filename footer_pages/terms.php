@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -10,13 +14,13 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("header").load("../templates/header.html") });
+          $(function(){ $("header").load("../templates/header.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
 
     </head>
@@ -37,7 +41,7 @@
 
       <h3>Welcome to this website!</h3>
 
-      <p>These terms and conditions outline the rules and regulations for the use of WebP, Group 16's Website, located at <a href="index.html">www.webpex1grp16.com</a>.</p>
+      <p>These terms and conditions outline the rules and regulations for the use of WebP, Group 16's Website, located at <a href="index.php">www.webpex1grp16.com</a>.</p>
 
       <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use this website if you do not agree to take all of the terms and conditions stated on this page.</p>
 

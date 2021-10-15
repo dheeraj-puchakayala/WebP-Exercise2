@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -9,13 +13,13 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("header").load("../templates/header.html") });
+          $(function(){ $("header").load("../templates/header.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
     </head>
     <body>
@@ -45,7 +49,7 @@ The following definitions shall have the same meaning regardless of whether they
 <li><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Disclaimer) refers to this website.</li>
 <li><strong>Service</strong> refers to the Website.</li>
 <li><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
-<li><strong>Website</strong> refers to this website, accessible from <a href="index.html" rel="external nofollow noopener" target="_blank">www.webpex1grp16.com</a></li>
+<li><strong>Website</strong> refers to this website, accessible from <a href="index.php" rel="external nofollow noopener" target="_blank">www.webpex1grp16.com</a></li>
 </ul>
 <h2>Disclaimer</h2>
 <p>The information contained on the Service is for general information purposes only.</p>

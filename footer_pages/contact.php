@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -9,13 +13,13 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("header").load("../templates/header.html") });
+          $(function(){ $("header").load("../templates/header.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
     </head>
     <body>
@@ -33,7 +37,7 @@
                     <!-- <div class="nav px-3 justify-content-center pb-3 mb-3"> -->
                     <div class="mx-auto" style="width: 1000px;">
                         <br>
-                        For further assistance, please contact one of the three members listed in <a href="about.html">About</a>
+                        For further assistance, please contact one of the three members listed in <a href="about.php">About</a>
                         or the faculty in charge of this course, Suvidha K.S., at:
                         <p  class="text-muted">
                         <br> adarsh_b180098cs@nitc.ac.in

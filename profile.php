@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <title>
@@ -12,7 +16,7 @@
               alert("Successfull Login")
               let name = "session"
               document.cookie = name +'= 1; Path=/;'
-              document.location = "index.html";
+              document.location = "index.php";
               // return false;
             }
             
@@ -30,7 +34,7 @@
                 document.getElementById("username").disabled = false;
                 document.getElementById("password").disabled = false;
                 document.getElementById("login").disabled = false;
-                document.location = "login.html"
+                document.location = "login.php"
               }, 3000);
 
               
@@ -43,10 +47,10 @@
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.html") });
+          $(function(){ $("head").load("../templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.html") });
+          $(function(){ $("footer").load("../templates/footer.php") });
         </script>
     </head>
     <body>
@@ -56,7 +60,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content rounded-5 shadow">
               <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h5 style="font-family: 'Source Sans Pro', sans-serif; color: #5bc0de;"><a href="index.html" style="text-decoration: none;">WebCoursera</a></h5>
+                <h5 style="font-family: 'Source Sans Pro', sans-serif; color: #5bc0de;"><a href="index.php" style="text-decoration: none;">WebCoursera</a></h5>
                 <h2 class="fw-bold mb-0">Login</h2>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
               </div>
@@ -74,7 +78,7 @@
                   <button id="login" class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="reset" onclick="login_logic()">Login</button>
                   <!-- <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small> -->
                   <hr class="my-4">
-                  New to WebCoursera? <a href="signup.html" style="text-decoration: none;"> Sign up </a>
+                  New to WebCoursera? <a href="signup.php" style="text-decoration: none;"> Sign up </a>
                 </form>
               </div>
             </div>
