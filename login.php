@@ -4,15 +4,17 @@ $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable 
 $message="";
 
 if(count($_POST)>0 || $_SERVER["REQUEST_METHOD"] == "POST") {
-
-$con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
-$result = mysqli_query($con,"SELECT * FROM users WHERE username='" . $_POST["username"] . "' and password = '". $_POST["password"]."'");
+$pass_hash = password_hash($_POST["password"],PASSWORD_BCRYPT);
+$result = mysqli_query($con,"SELECT * FROM users WHERE username='" . $_POST["username"] . "'");
 $row  = mysqli_fetch_array($result);
-echo $row;
 if(is_array($row)) {
+  if(password_verify($_POST["password"],$row["password"])){
 $_SESSION["id"] = $row['userid'];
-$isme = mysqli_query($con,"SELECT name FROM users WHERE userid='" . $row['userid'] ."'");
 echo "Login Successful";
+  }
+  else {
+    $message = "Invalid Username or Password!";
+    }
 } else {
 $message = "Invalid Username or Password!";
 }
@@ -88,9 +90,10 @@ if(isset($_SESSION["id"])) {
         
               <div class="modal-body p-5 pt-0">
                 <form method="post">
+                <?php if($message!="") { echo $message; } ?>
                   <div class="form-floating mb-3">
                     <input id ="username" type="text" name="username" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <label for="floatingInput">User Name</label>
                   </div>
                   <div class="form-floating mb-3">
                     <input id = "password" type="password" name="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">

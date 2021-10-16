@@ -1,5 +1,43 @@
 <?php
 session_start();
+$message = "";
+$con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+
+if (count($_POST)>0){
+  $name = $_POST["name"];
+  $username = $_POST["username"];
+  $email = $_POST["email"];
+  $pass = $_POST["password"];
+  $cpass = $_POST["c_password"];
+  $result = mysqli_query($con,"SELECT COUNT(*) FROM users WHERE username='" . $username . "'");
+  $row  = mysqli_fetch_array($result);
+  if($row[0] > 0){
+    $message = "User Name already exists";
+  }
+  else{
+
+    if($pass != $cpass){
+      $message = "Passwords don't match";
+    }
+    else{
+      $pass_hash = password_hash($pass,PASSWORD_BCRYPT);
+      $sql = "INSERT INTO users ( username, email, password, name) VALUES ('$username','$email','$pass_hash','$name')";
+      // echo $sql;
+      $res = mysqli_query($con,$sql);
+      if($res != 0){
+        // echo "inserted";
+        echo "Sign Up successful";
+        header("Location:http://localhost/WebCoursera/login.php");
+      }
+      else{
+        echo $con->error;
+      }
+    }
+  }
+}
+if(isset($_SESSION["id"])) {
+  header("Location:http://localhost/WebCoursera/login.php");
+  }
 ?>
 
 <html>
@@ -30,25 +68,26 @@ session_start();
               </div>
         
               <div class="modal-body p-5 pt-0">
-                <form class="">
+                <form method = "post">
+                  <?php if($message!="") { echo $message; } ?>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="name" placeholder="name@example.com">
+                        <input type="text" class="form-control rounded-4" id="name" name="name" placeholder="Name">
                         <label for="floatingInput">Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="name" placeholder="name@example.com">
+                        <input type="text" class="form-control rounded-4" id="name" name="username"placeholder="User Name">
                         <label for="floatingInput">User Name</label>
                     </div>
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control rounded-4" id="email" placeholder="name@example.com">
+                    <input type="email" class="form-control rounded-4" id="email" name ="email" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control rounded-4" id="password" placeholder="Password">
+                    <input type="password" class="form-control rounded-4" id="password" name="password" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control rounded-4" id="c_password" placeholder="Password">
+                    <input type="password" class="form-control rounded-4" id="c_password" name="c_password" placeholder="Password">
                     <label for="floatingPassword">Confirm Password</label>
                   </div>
                   <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">SignUp</button>

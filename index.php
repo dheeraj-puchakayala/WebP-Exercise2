@@ -26,13 +26,19 @@ session_start();
     <body>
 
       <header></header>
+      <?php 
+        $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+        $sql = "SELECT COUNT(*) FROM users";
+        $row = mysqli_query($con,$sql);
+        $res = mysqli_fetch_array($row);
+      ?>
       
       <div class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Welcome to WebCoursera</h1>
-            <p class="lead text-muted" id = "logger1">Sign up now to access a wide range of informative and engaging videos on a variety of subjects. Start your learning experience today!</p>
-            <p class="lead text-muted" id = "logger2">All the best on your learning experience. Start your learning experience today!</p>
+            <p class="lead text-muted" id = "logger1">Catch up the competition. Already <span ><b><?php echo $res[0]; ?></b></span> students have registered. Sign up now to access a wide range of informative and engaging videos on a variety of subjects. Start your learning experience today!</p>
+            <p class="lead text-muted" id = "logger2">All the best on your learning experience. <b><?php echo $res[0]; ?></b> students have registered so far. Start your learning experience today!</p>
             <p id = "logger">
               <a href="login.php" class="btn btn-primary my-2 btn-lg bg-info border border-info">Login</a>
               <a href="signup.php" class="btn btn-secondary my-2 btn-lg">Sign Up</a>
