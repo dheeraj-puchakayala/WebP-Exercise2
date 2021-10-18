@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(! isset($_SESSION['id'])){
+  echo "<script>window.location='//localhost/WebCoursera/login.php'</script>";
+}
 ?>
 
 <html>
@@ -31,11 +34,31 @@ session_start();
         <div class="p-5 mb-4 bg-light rounded-3">
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold"><img src="../images/ajax.png" style="width: 180px; height: 180px;"> Asynchronous JavaScript And XML</h1>
-            <p class="col-md-8 fs-4" style = "margin-top: 30px;">Check Your Progress</p>
+            <?php
+              $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect'); 
+              $fname = basename($_SERVER['PHP_SELF']);
+              $fname = substr($fname,0, -4);
+              $sql = "SELECT courseid FROM courses WHERE course_name='".$fname."'";
+              $row = mysqli_query($con,$sql);
+              $res = mysqli_fetch_array($row);
+              $sql = "SELECT COUNT(*) FROM course_reg WHERE courseid='".$res[0]."' AND userid='".$_SESSION["id"]."'";
+              $row = mysqli_query($con,$sql);
+              $res = mysqli_fetch_array($row);
+              // echo($res[0]);
+              if($res[0]== 1){
+                echo '<button class="btn btn-info btn-lg" type="button">Register for this Course</button>';
+              }
+              else{
+                echo '<p class="col-md-8 fs-4" style = "margin-top: 30px;">Check Your Progress</p>
+                <div class="progress" style="margin-top: 20px; height: 30px">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                </div>';
+              }
+            ?>
+            <!-- <p class="col-md-8 fs-4" style = "margin-top: 30px;">Check Your Progress</p>
             <div class="progress" style="margin-top: 20px; height: 30px">
               <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-            </div>
-            <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+            </div> -->
           </div>
         </div>
 

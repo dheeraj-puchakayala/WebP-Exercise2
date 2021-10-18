@@ -16,15 +16,13 @@ if (strlen($q)>0) {
         //find a link matching the search text
         if (stristr($y,$q)) {
           if ($hint=="") {
-            $hint="<a  href='//"  .
-            $z.
-            "' target='_blank'>" .
-            $y . "</a>";
+            $hint="<option target='_blank'><a href='//".$z ."'>".$y."</a></option>";
           } else {
-            $hint=$hint . "<br /><a  href='//" .
-            $z .
-            "' target='_blank'>" .
-            $y. "</a>";
+            $hint=$hint."<option target='_blank'><a href='//".$z ."'>".$y."</a></option>";
+            // $hint=$hint . "<option href='//" .
+            // $z .
+            // "' target='_blank'>" .
+            // $y. "</option>";
           }
         }
       }
