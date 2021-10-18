@@ -1,89 +1,94 @@
 <?php
 session_start();
-?>
+$con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+$message = "";
+if (count($_POST)>0){
+  $pass = $_POST["password"];
+  $cpass = $_POST["c_password"];
+  if($pass != $cpass){
+    $message = "Passwords don't match";
+  }
+  else{
+    $pass_hash = password_hash($pass,PASSWORD_BCRYPT);
+    $sql = "UPDATE `users` SET `password`='".$pass_hash."' WHERE userid='".$_SESSION["id"]."'";
+    // echo $sql;
+    $res = mysqli_query($con,$sql);
+    if($res != 0){
+      // echo "inserted";
+      $message = "Password Changed!!!";
+      // header("Location:http://localhost/WebCoursera/profile.php");
+    }
+    else{
+      echo $con->error;
+    }
+  }
 
+}
+?>
 <html>
     <head>
         <title>
-            Login
+          WebCoursera           
         </title>
-        <script>
-          var limit = 5
-          function login_logic() {
-            let uname = document.getElementById("username").value;
-            let pword = document.getElementById("password").value;
-            if(uname == "root@abc.com" && pword == "root"){
-              alert("Successfull Login")
-              let name = "session"
-              document.cookie = name +'= 1; Path=/;'
-              document.location = "index.php";
-              // return false;
-            }
-            
-            else{
-              limit--;
-              alert("\nIncorrect Credentials\n" + limit + " attempts left" )
-            }
-
-            if (limit == 0) {
-              document.getElementById("username").disabled = true;
-              document.getElementById("password").disabled = true;
-              document.getElementById("login").disabled = true;
-              
-              setTimeout(function(){
-                document.getElementById("username").disabled = false;
-                document.getElementById("password").disabled = false;
-                document.getElementById("login").disabled = false;
-                document.location = "login.php"
-              }, 3000);
-
-              
-            }
-          }
-        </script>
         <script
           src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
           crossorigin="anonymous">
         </script>
         <script> 
-          $(function(){ $("head").load("../templates/links.php") });
+          $(function(){ $("head").load("templates/links.php") });
         </script>
         <script> 
-          $(function(){ $("footer").load("../templates/footer.php") });
+          $(function(){ $("header").load("templates/header.php") });
         </script>
+        <script> 
+          $(function(){ $("footer").load("templates/footer.php") });
+        </script>
+
     </head>
     <body>
-        <!-- <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
-            
-          </div> -->
-          <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-5 shadow">
-              <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h5 style="font-family: 'Source Sans Pro', sans-serif; color: #5bc0de;"><a href="index.php" style="text-decoration: none;">WebCoursera</a></h5>
-                <h2 class="fw-bold mb-0">Login</h2>
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-              </div>
-        
-              <div class="modal-body p-5 pt-0">
-                <form>
-                  <div class="form-floating mb-3">
-                    <input id ="username" type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input id = "password" type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+
+      <header></header> 
+      <?php 
+        $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+        $sql = "SELECT * FROM users WHERE userid='".$_SESSION["id"]."'";
+        $row = mysqli_query($con,$sql);
+        $res = mysqli_fetch_array($row);
+        $sql = "SELECT c.course_name FROM courses c, course_reg cr WHERE cr.userid='".$_SESSION["id"]."' AND c.courseid = cr.courseid";
+        $row = mysqli_query($con,$sql);
+      ?>
+      
+      <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div class="card p-4">
+            <div class=" image d-flex flex-column justify-content-center align-items-center" style="backgroud-color:white;"> <button class="btn btn-secondary"> <img src="https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png" height="100" width="100" /></button> <span class="name mt-3"><?php echo $res["name"]; ?></span> <span class="idd"><?php echo $res["email"]; ?></span>
+                <div class="d-flex flex-row justify-content-center align-items-center mt-3">  <span class="follow"><b>Registered Courses</b></span> </div>
+                
+                <div class="text mt-3"> <span><?php while($res1 = mysqli_fetch_array($row)){
+                  echo "".$res1[0]."<br>";
+                } ?>
+                </span> </div>
+                <div class="d-flex flex-row justify-content-center align-items-center mt-3">  <span class="follow"><b>Change Password</b></span> </div>
+                <div style="height:0.5cm"></div>
+                <div>
+                <form method = "post">
+                <?php if($message!="") { echo $message; } ?>
+                <div class="form-floating mb-3">
+                
+                    <input type="password" class="form-control rounded-4" id="password" name="password" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                   </div>
-                  <button id="login" class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="reset" onclick="login_logic()">Login</button>
-                  <!-- <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small> -->
-                  <hr class="my-4">
-                  New to WebCoursera? <a href="signup.php" style="text-decoration: none;"> Sign up </a>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control rounded-4" id="c_password" name="c_password" placeholder="Password">
+                    <label for="floatingPassword">Confirm Password</label>
+                  </div>
+                <div class=" d-flex mt-2"> <button class="btn1 btn-dark" type="submit">Submit</button> </div>
                 </form>
               </div>
             </div>
-          </div>
+        </div>
+    </div>
 
-        <footer ></footer>
+      <footer></footer>
+
     </body>
 </html>
