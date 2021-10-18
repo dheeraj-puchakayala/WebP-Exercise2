@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 04:04 PM
+-- Generation Time: Oct 18, 2021 at 06:21 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -29,20 +29,35 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `courses` (
   `courseid` int(11) NOT NULL,
-  `course_name` varchar(128) NOT NULL
+  `course_name` varchar(128) NOT NULL,
+  `course_img` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`courseid`, `course_name`) VALUES
-(1, 'HTML'),
-(2, 'CSS'),
-(3, 'JAVASCRIPT'),
-(4, 'AJAX'),
-(5, 'PYTHON'),
-(6, 'JAVA');
+INSERT INTO `courses` (`courseid`, `course_name`, `course_img`) VALUES
+(1, 'HTML', ''),
+(2, 'CSS', ''),
+(3, 'JAVASCRIPT', ''),
+(4, 'AJAX', ''),
+(5, 'PYTHON', ''),
+(6, 'JAVA', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_ref`
+--
+
+CREATE TABLE `course_ref` (
+  `courseid` int(11) NOT NULL,
+  `ref_name` varchar(128) NOT NULL,
+  `author` varchar(128) NOT NULL,
+  `edition` varchar(128) NOT NULL,
+  `publication` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,15 +67,17 @@ INSERT INTO `courses` (`courseid`, `course_name`) VALUES
 
 CREATE TABLE `course_reg` (
   `courseid` int(11) NOT NULL,
-  `userid` int(11) NOT NULL
+  `userid` int(11) NOT NULL,
+  `compl_status` int(11) NOT NULL,
+  `progress` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `course_reg`
 --
 
-INSERT INTO `course_reg` (`courseid`, `userid`) VALUES
-(4, 12);
+INSERT INTO `course_reg` (`courseid`, `userid`, `compl_status`, `progress`) VALUES
+(4, 12, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -105,8 +122,23 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userid`, `username`, `email`, `password`, `name`) VALUES
 (11, 'dheeraj', 'dheeraj@abc.com', '$2y$10$/a18cDdfSGOa7zfZDXVqKeKiA1yzyS1C3XA//0uhW1ypojYG3lbjS', 'Dheeraj'),
-(12, 'root', 'root@abc.com', '$2y$10$UO6MQYWBP7AHr5GlGRj.y.OBtCJX0pKAVMDhj0zgcMjqbvtPWVY4K', 'Admin'),
+(12, 'root', 'root@abc.com', '$2y$10$/SWdO/aezW0NdtXmQHa21e5JctXq8o4Z5XOOliVi4NlrnxLBbODnq', 'Admin'),
 (13, 'adarsh', 'adarsh@abc.com', '$2y$10$.HQLY/DtQk7ogXjYO9KO0OpOaYe1v2SeTtjGZmStidYqiqjqHeFni', 'Adarsh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `courseid` int(11) NOT NULL,
+  `video_type` int(11) NOT NULL,
+  `video_name` varchar(128) NOT NULL,
+  `video_link` varchar(256) NOT NULL,
+  `video_duration` int(11) NOT NULL,
+  `view_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -117,6 +149,12 @@ INSERT INTO `users` (`userid`, `username`, `email`, `password`, `name`) VALUES
 --
 ALTER TABLE `courses`
   ADD PRIMARY KEY (`courseid`);
+
+--
+-- Indexes for table `course_ref`
+--
+ALTER TABLE `course_ref`
+  ADD KEY `courseid` (`courseid`);
 
 --
 -- Indexes for table `course_reg`
@@ -136,6 +174,12 @@ ALTER TABLE `search`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userid`);
+
+--
+-- Indexes for table `videos`
+--
+ALTER TABLE `videos`
+  ADD KEY `courseid` (`courseid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -158,6 +202,12 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `course_ref`
+--
+ALTER TABLE `course_ref`
+  ADD CONSTRAINT `course_ref_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `course_reg`
 --
 ALTER TABLE `course_reg`
@@ -169,6 +219,12 @@ ALTER TABLE `course_reg`
 --
 ALTER TABLE `search`
   ADD CONSTRAINT `search_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `videos`
+--
+ALTER TABLE `videos`
+  ADD CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
