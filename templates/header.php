@@ -100,12 +100,12 @@ session_start();
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-macos mx-0 shadow" style="width: 220px;">
-                        <li><a class="dropdown-item " href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/HTML.php" onclick="return checkLoggedIn();">HTML</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/CSS.php" onclick="return checkLoggedIn();">CSS</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVASCRIPT.php" onclick="return checkLoggedIn();">JAVASCRIPT</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVA.php" onclick="return checkLoggedIn();">JAVA</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/AJAX.php" onclick="return checkLoggedIn();">AJAX</a></li>
-                        <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/PYTHON.php" onclick="return checkLoggedIn();">PYTHON</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=1" onclick="return checkLoggedIn();">HTML</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=2" onclick="return checkLoggedIn();">CSS</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=3" onclick="return checkLoggedIn();">JAVASCRIPT</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=6" onclick="return checkLoggedIn();">JAVA</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=4" onclick="return checkLoggedIn();">AJAX</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=5" onclick="return checkLoggedIn();">PYTHON</a></li>
 
                         </ul>
                     </div>
@@ -153,12 +153,12 @@ session_start();
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-macos mx-0 shadow" style="width: 220px;">
-                            <li><a class="dropdown-item " href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/HTML.php" onclick="return checkLoggedIn();">HTML</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/CSS.php" onclick="return checkLoggedIn();">CSS</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVASCRIPT.php" onclick="return checkLoggedIn();">JAVASCRIPT</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVA.php" onclick="return checkLoggedIn();">JAVA</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/AJAX.php" onclick="return checkLoggedIn();">AJAX</a></li>
-                            <li><a class="dropdown-item" href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/PYTHON.php" onclick="return checkLoggedIn();">PYTHON</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=1" onclick="return checkLoggedIn();">HTML</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=2" onclick="return checkLoggedIn();">CSS</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=3" onclick="return checkLoggedIn();">JAVASCRIPT</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=6" onclick="return checkLoggedIn();">JAVA</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=4" onclick="return checkLoggedIn();">AJAX</a></li>
+                        <li><a class="dropdown-item" href="<?php  echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=5" onclick="return checkLoggedIn();">PYTHON</a></li>
 
                         </ul>
                     </div>
