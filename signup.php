@@ -1,7 +1,7 @@
 <?php
 session_start();
 $message = "";
-$con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+$con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
 
 if (count($_POST)>0){
   $name = $_POST["name"];

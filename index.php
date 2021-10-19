@@ -27,7 +27,7 @@ session_start();
 
       <header></header>
       <?php 
-        $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+        $con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
         $sql = "SELECT COUNT(*) FROM users";
         $row = mysqli_query($con,$sql);
         $res = mysqli_fetch_array($row);

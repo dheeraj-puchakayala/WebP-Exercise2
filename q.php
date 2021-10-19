@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect');
+$con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
 $sql = "SELECT c.course_name, s.link FROM courses as c, search as s WHERE c.courseid=s.courseid";
 $row = mysqli_query($con,$sql);
 

@@ -35,7 +35,7 @@ if(! isset($_SESSION['id'])){
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold"><img src="../images/ajax.png" style="width: 180px; height: 180px;"> Asynchronous JavaScript And XML</h1>
             <?php
-              $con = mysqli_connect('127.0.0.1:3306','root','','webp_auth_db') or die('Unable To connect'); 
+              $con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect'); 
               $fname = basename($_SERVER['PHP_SELF']);
               $fname = substr($fname,0, -4);
               $sql = "SELECT courseid FROM courses WHERE course_name='".$fname."'";
