@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['attempts']);
 $message = "";
 $con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
 

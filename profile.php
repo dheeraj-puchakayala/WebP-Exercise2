@@ -81,7 +81,7 @@ if (count($_POST)>0){
                     <input type="password" class="form-control rounded-4" id="c_password" name="c_password" placeholder="Password">
                     <label for="floatingPassword">Confirm Password</label>
                   </div>
-                <div class=" d-flex mt-2"> <button class="btn1 btn-dark" type="submit">Submit</button> </div>
+                <div class=" d-flex mt-2 justify-content-center"> <button class="btn1 btn-dark" type="submit">Submit</button> </div>
                 </form>
               </div>
             </div>

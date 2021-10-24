@@ -1,69 +1,10 @@
-<?php
-session_start();
-$con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
-$message="";
 
-if(count($_POST)>0 || $_SERVER["REQUEST_METHOD"] == "POST") {
-$pass_hash = password_hash($_POST["password"],PASSWORD_BCRYPT);
-$result = mysqli_query($con,"SELECT * FROM users WHERE username='" . $_POST["username"] . "'");
-$row  = mysqli_fetch_array($result);
-if(is_array($row)) {
-  if(password_verify($_POST["password"],$row["password"])){
-$_SESSION["id"] = $row['userid'];
-echo "Login Successful";
-  }
-  else {
-    $message = "Invalid Username or Password!";
-    }
-} else {
-$message = "Invalid Username or Password!";
-}
-}
-
-if(isset($_SESSION["id"])) {
-    header("Location:http://localhost/WebCoursera/index.php");
-    }
-?>
 
 <html>
     <head>
         <title>
             Login
         </title>
-        <script>
-          var limit = 5
-          function login_logic() {
-            let uname = document.getElementById("username").value;
-            let pword = document.getElementById("password").value;
-            if(uname == "root@abc.com" && pword == "root"){
-              alert("Successfull Login")
-              let name = "session"
-              document.cookie = name +'= 1; Path=/;'
-              document.location = "index.php";
-              // return false;
-            }
-            
-            else{
-              limit--;
-              alert("\nIncorrect Credentials\n" + limit + " attempts left" )
-            }
-
-            if (limit == 0) {
-              document.getElementById("username").disabled = true;
-              document.getElementById("password").disabled = true;
-              document.getElementById("login").disabled = true;
-              
-              setTimeout(function(){
-                document.getElementById("username").disabled = false;
-                document.getElementById("password").disabled = false;
-                document.getElementById("login").disabled = false;
-                document.location = "login.php"
-              }, 3000);
-
-              
-            }
-          }
-        </script>
         <script
           src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -75,7 +16,10 @@ if(isset($_SESSION["id"])) {
         <script> 
           $(function(){ $("footer").load("templates/footer.php") });
         </script>
+       
     </head>
+
+    
     <body>
         <!-- <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
             
@@ -90,7 +34,6 @@ if(isset($_SESSION["id"])) {
         
               <div class="modal-body p-5 pt-0">
                 <form method="post">
-                <?php if($message!="") { echo $message; } ?>
                   <div class="form-floating mb-3">
                     <input id ="username" type="text" name="username" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">User Name</label>
@@ -107,6 +50,61 @@ if(isset($_SESSION["id"])) {
               </div>
             </div>
           </div>
+
+          <?php
+      session_start();
+      $con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect');
+      $message="";
+      
+      if(count($_POST)>0 || $_SERVER["REQUEST_METHOD"] == "POST") {
+      $pass_hash = password_hash($_POST["password"],PASSWORD_BCRYPT);
+      $result = mysqli_query($con,"SELECT * FROM users WHERE username='" . $_POST["username"] . "'");
+      $row  = mysqli_fetch_array($result);
+      if(is_array($row)) {
+        if(password_verify($_POST["password"],$row["password"])){
+      $_SESSION["id"] = $row['userid'];
+      echo "Login Successful";
+        }
+        else {
+          $message = "Invalid Username or Password!";
+          }
+      } else {
+      $message = "Invalid Username or Password!";
+      }
+      if(!isset($_SESSION['attempts']))
+        $_SESSION['attempts'] = 5;
+      if($_SESSION['attempts'] == 0)
+          $_SESSION['attempts'] = 5;
+      }
+
+      if(isset($_SESSION["id"])) {
+          header("Location:http://localhost/WebCoursera/index.php");
+          unset($_SESSION['attempts']);
+          }
+      else
+      {
+        if (isset($_SESSION["attempts"])){
+            $_SESSION['attempts'] = $_SESSION['attempts'] - 1;
+            echo '<script>var limit =' .$_SESSION["attempts"].';
+            alert("\nIncorrect Credentials\n" + limit + " attempts left" )
+
+
+          if (limit == 0) {
+            document.getElementById("username").disabled = true;
+            document.getElementById("password").disabled = true;
+            document.getElementById("login").disabled = true;
+            
+            setTimeout(function(){
+              document.getElementById("username").disabled = false;
+              document.getElementById("password").disabled = false;
+              document.getElementById("login").disabled = false;
+              document.location = "login.php"
+            }, 3000);
+          }</script>';
+          if($_SESSION["attempts"] == 0)
+          unset($_SESSION["attempts"]);
+        }}
+?>
 
         <footer ></footer>
     </body>

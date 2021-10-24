@@ -237,7 +237,7 @@ if(! isset($_SESSION['id'])){
           echo '<div class="col d-flex align-items-start">
             <div>
             <ul>';
-          while($res = mysqli_fetch_array($row)){
+          while($res = mysqli_fetch_array($row) and $_SESSION['id'] == 12){
               echo'
                 <li><em>'.$res["name"].'</em></li>';
               

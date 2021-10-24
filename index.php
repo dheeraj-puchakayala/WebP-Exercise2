@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['attempts']);
 ?>
 <html>
     <head>
@@ -38,7 +39,20 @@ session_start();
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Welcome to WebCoursera</h1>
             <p class="lead text-muted" id = "logger1">Catch up the competition. Already <span ><b><?php echo $res[0]; ?></b></span> students have registered. Sign up now to access a wide range of informative and engaging videos on a variety of subjects. Start your learning experience today!</p>
-            <p class="lead text-muted" id = "logger2">All the best on your learning experience. <b><?php echo $res[0]; ?></b> students have registered so far. Start your learning experience today!</p>
+            <div id = "logger2">
+            <p class="lead text-muted" >All the best on your learning experience. <b><?php echo $res[0]; ?></b> students have registered so far. Start your learning experience today!</p>
+            <ul style="list-style-type:none;">
+              <?php 
+              $sql = "SELECT name FROM users";
+              $row = mysqli_query($con,$sql);
+              while($res = mysqli_fetch_array($row) and $_SESSION['id'] == 12){
+              echo'
+                <li>'.$res["name"].'</li>';
+              
+                }
+              ?>
+              </ul>
+            </div>
             <p id = "logger">
               <a href="login.php" class="btn btn-primary my-2 btn-lg bg-info border border-info">Login</a>
               <a href="signup.php" class="btn btn-secondary my-2 btn-lg">Sign Up</a>
@@ -52,7 +66,7 @@ session_start();
 
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div class="col">
-        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/HTML.php" style="text-decoration: none;">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=1" style="text-decoration: none;">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-2.png'); background-size: cover;">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">HTML</h2>
@@ -66,7 +80,7 @@ session_start();
       </div>
 
       <div class="col">
-        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/CSS.php" style="text-decoration: none;" onclick="return checkLoggedIn()">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=2" style="text-decoration: none;" onclick="return checkLoggedIn()">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-1.png'); background-size: cover;">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">CSS</h2>
@@ -80,7 +94,7 @@ session_start();
       </div>
 
       <div class="col">
-        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/JAVASCRIPT.php" style="text-decoration: none;" onclick="return checkLoggedIn()">
+        <a href="<?php echo $_SESSION['ROOT_FOLDER']?>courses/course_page.php?course_id=3" style="text-decoration: none;" onclick="return checkLoggedIn()">
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('images/PLANET-3.png'); background-size: cover; ">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">JAVASCRIPT</h2>
