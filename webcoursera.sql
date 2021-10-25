@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 10:10 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- Generation Time: Oct 25, 2021 at 11:40 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webp_auth_db`
+-- Database: `webcoursera`
 --
 
 -- --------------------------------------------------------
@@ -96,7 +96,9 @@ CREATE TABLE `course_reg` (
 --
 
 INSERT INTO `course_reg` (`courseid`, `userid`, `compl_status`, `viewed_videos`) VALUES
-(4, 12, 0, '0');
+(5, 11, 0, '37,38,39,40,41,42,43,44,45'),
+(5, 13, 0, ''),
+(5, 14, 0, '');
 
 -- --------------------------------------------------------
 
@@ -114,12 +116,12 @@ CREATE TABLE `search` (
 --
 
 INSERT INTO `search` (`courseid`, `link`) VALUES
-(1, 'localhost/WebCoursera/courses/HTML.php'),
-(2, 'localhost/WebCoursera/courses/CSS.php'),
-(3, 'localhost/WebCoursera/courses/JAVASCRIPT.php'),
-(4, 'localhost/WebCoursera/courses/AJAX.php'),
-(5, 'localhost/WebCoursera/courses/PYTHON.php'),
-(6, 'localhost/WebCoursera/courses/JAVA.php');
+(1, 'localhost/WebCoursera/courses/course_page.php?courseid=1'),
+(2, 'localhost/WebCoursera/courses/course_page.php?courseid=2'),
+(3, 'localhost/WebCoursera/courses/course_page.php?courseid=3'),
+(4, 'localhost/WebCoursera/courses/course_page.php?courseid=4'),
+(5, 'localhost/WebCoursera/courses/course_page.php?courseid=5'),
+(6, 'localhost/WebCoursera/courses/course_page.php?courseid=6');
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userid`, `username`, `email`, `password`, `name`) VALUES
 (11, 'dheeraj', 'dheeraj@abc.com', '$2y$10$/a18cDdfSGOa7zfZDXVqKeKiA1yzyS1C3XA//0uhW1ypojYG3lbjS', 'Dheeraj'),
 (12, 'root', 'root@abc.com', '$2y$10$/SWdO/aezW0NdtXmQHa21e5JctXq8o4Z5XOOliVi4NlrnxLBbODnq', 'Admin'),
-(13, 'adarsh', 'adarsh@abc.com', '$2y$10$.HQLY/DtQk7ogXjYO9KO0OpOaYe1v2SeTtjGZmStidYqiqjqHeFni', 'Adarsh');
+(13, 'adarsh', 'adarsh@abc.com', '$2y$10$.HQLY/DtQk7ogXjYO9KO0OpOaYe1v2SeTtjGZmStidYqiqjqHeFni', 'Adarsh'),
+(14, 'aarthi', 'aarthi@abc.com', '$2y$10$ZHxB9Qo1PVM16xeHvObX5.omcUqf04A4N2SNnaaGPyeVYLWHjdo7i', 'Aarthi');
 
 -- --------------------------------------------------------
 
@@ -275,7 +278,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `videos`

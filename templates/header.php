@@ -69,8 +69,17 @@ session_start();
     </script> -->
     <script>
         function redirect(){
-            let val = document.getElementById("value").value;
-            window.location= "//localhost/WebCoursera/courses/" + val + ".php";
+            let str = document.getElementById("value").value;
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                    let val = this.responseText;
+                    console.log(val);
+                    window.location = "//localhost/WebCoursera/courses/course_page.php?course_id=" + val;
+                }
+            }
+            xmlhttp.open("GET","<?php echo $_SESSION['ROOT_FOLDER']?>get_cid.php?name="+str,true);
+            xmlhttp.send();
         }
     </script>
     <script>
@@ -114,7 +123,7 @@ session_start();
             </ul>
 
             <span class="input-group-text" style="padding: 5px; border-radius: 5px;">
-            <datalist id="suggest1" onclick="redirect(value)">
+            <datalist id="suggest" onclick="redirect(value)">
             </datalist>
             <input style="border-width:0px; background-color:#edebeb;" id="value1" autoComplete="on" name="suggest" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
             <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect1()"></i></button>
