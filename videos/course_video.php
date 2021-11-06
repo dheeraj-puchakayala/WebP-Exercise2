@@ -25,6 +25,25 @@ if(! isset($_SESSION['id'])){
         <script> 
           $(function(){ $("footer").load("../templates/footer.php") });
         </script>
+        <script>
+          var downlod = function(){
+
+            let info = document.getElementById("text-area1").value;
+            console.log(info);
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(info));
+            element.setAttribute('download', "Notes.txt");
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+              
+          }
+        </script>
+        
     
     </head>
 
@@ -59,14 +78,15 @@ if(! isset($_SESSION['id'])){
             <div class="row" style="height: 100%;" >
                   <h2>Notes</h2> 
                   <div class="input-group" style="height: 70%;">
-                    <textarea style="resize:none;" rows="8" class="form-control form-control-lg" aria-label="With textarea"></textarea>
+                    <textarea id ="text-area1" style="resize:none;" rows="8" class="form-control form-control-lg" aria-label="With textarea"></textarea>
                     
                   </div>
-                  <a class="btn btn-outline-dark me-2" href="#" role="button" style="margin-top: 8%; height:10%;">Save Notes</a>
+                  <a class="btn btn-outline-dark me-2" href="#" role="button" style="margin-top: 8%; height:10%;" onclick="downlod()">Save Notes</a>
             </div>
         </div> 
       
       </div>
+      
 
       <footer></footer>
     </body>
