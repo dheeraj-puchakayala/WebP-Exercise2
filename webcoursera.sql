@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 11:40 AM
+-- Generation Time: Nov 09, 2021 at 11:55 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -96,9 +96,10 @@ CREATE TABLE `course_reg` (
 --
 
 INSERT INTO `course_reg` (`courseid`, `userid`, `compl_status`, `viewed_videos`) VALUES
-(5, 11, 0, '37,38,39,40,41,42,43,44,45'),
+(5, 11, 0, '37,38,39,40,41,42,44,45,43'),
 (5, 13, 0, ''),
-(5, 14, 0, '');
+(5, 14, 0, ''),
+(1, 11, 0, '');
 
 -- --------------------------------------------------------
 
@@ -122,6 +123,33 @@ INSERT INTO `search` (`courseid`, `link`) VALUES
 (4, 'localhost/WebCoursera/courses/course_page.php?courseid=4'),
 (5, 'localhost/WebCoursera/courses/course_page.php?courseid=5'),
 (6, 'localhost/WebCoursera/courses/course_page.php?courseid=6');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `search1`
+--
+
+CREATE TABLE `search1` (
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `search1`
+--
+
+INSERT INTO `search1` (`name`) VALUES
+('about'),
+('terms'),
+('help'),
+('contact'),
+('policy'),
+('HTML'),
+('CSS'),
+('PYTHON'),
+('AJAX'),
+('JAVA'),
+('JAVASCRIPT');
 
 -- --------------------------------------------------------
 

@@ -42,7 +42,7 @@ if(! isset($_SESSION['id'])){
 
         <div class="p-5 mb-4 bg-light rounded-3">
           <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold"><img src=<?php echo $course["course_img"]?> style="width: 180px; height: 180px;"> <?php echo $course["course_name"];?></h1>
+            <a href="../courses/reg_users.php?course_id=<?php echo $courseid?>" style="text-decoration:none;"><h1 class="display-5 fw-bold"><img src=<?php echo $course["course_img"]?> style="width: 180px; height: 180px;"> <?php echo $course["course_name"];?></h1></a>
              <?php 
               $con = mysqli_connect('127.0.0.1:3306','root','','webcoursera') or die('Unable To connect'); 
               $sql = "SELECT COUNT(*) FROM course_reg WHERE courseid='".$courseid."' AND userid='".$_SESSION["id"]."'";

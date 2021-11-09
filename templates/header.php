@@ -70,6 +70,9 @@ session_start();
     <script>
         function redirect(){
             let str = document.getElementById("value").value;
+            if(str == "terms"|| str=="about" || str=="help" || str=="policy" || str=="contact"){
+                window.location="//localhost/WebCoursera/footer_pages/"+str+".php";
+            }
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function() {
                 if (this.readyState==4 && this.status==200) {
@@ -123,10 +126,10 @@ session_start();
             </ul>
 
             <span class="input-group-text" style="padding: 5px; border-radius: 5px;">
-            <datalist id="suggest" onclick="redirect(value)">
+            <datalist id="suggest">
             </datalist>
-            <input style="border-width:0px; background-color:#edebeb;" id="value1" autoComplete="on" name="suggest" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
-            <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect1()"></i></button>
+            <input style="border-width:0px; background-color:#edebeb;" id="value" autoComplete="on" name="suggest" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
+            <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect()"></i></button>
             </span>
 
             <div style="width: 25px;"></div>
@@ -183,7 +186,7 @@ session_start();
                 <div id = "suggest1" class="autocom-box"></div>
             </div> -->
             <span class="input-group-text" style="padding: 5px; border-radius: 5px;">
-            <datalist id="suggest1" onclick="redirect(value)">
+            <datalist id="suggest1">
             </datalist>
             <input style="border-width:0px; background-color:#edebeb;" id="value" autoComplete="on" name="suggest1" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
             <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect()"></i></button>
