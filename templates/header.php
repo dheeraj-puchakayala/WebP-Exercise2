@@ -87,7 +87,20 @@ session_start();
     </script>
     <script>
         function redirect1(){
-            window.location= "//localhost/WebCoursera/login.php";
+            let str = document.getElementById("value1").value;
+            if(str == "terms"|| str=="about" || str=="help" || str=="policy" || str=="contact"){
+                window.location="//localhost/WebCoursera/footer_pages/"+str+".php";
+            }
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                    let val = this.responseText;
+                    console.log(val);
+                    window.location = "//localhost/WebCoursera/courses/course_page.php?course_id=" + val;
+                }
+            }
+            xmlhttp.open("GET","<?php echo $_SESSION['ROOT_FOLDER']?>get_cid.php?name="+str,true);
+            xmlhttp.send();
         }
     </script>
 
@@ -128,8 +141,8 @@ session_start();
             <span class="input-group-text" style="padding: 5px; border-radius: 5px;">
             <datalist id="suggest">
             </datalist>
-            <input style="border-width:0px; background-color:#edebeb;" id="value" autoComplete="on" name="suggest" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
-            <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect()"></i></button>
+            <input style="border-width:0px; background-color:#edebeb;" id="value1" autoComplete="on" name="suggest" list="suggest1" placeholder="Search...." onkeyup=search_suggest(this.value)>
+            <button type="submit" class="btn"><i class="bi bi-search fa-lg" style="color:#5bc0de" onclick="redirect1()"></i></button>
             </span>
 
             <div style="width: 25px;"></div>
